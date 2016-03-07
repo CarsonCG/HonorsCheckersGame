@@ -1,17 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package checkersgame;
 import java.util.*;
 import static java.lang.Math.*;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author cmason
- */
 public class CheckersGame {
 
        private static String CB[][]  = {
@@ -38,7 +29,7 @@ public class CheckersGame {
         pieceTaken = false;
         
         
-        while(redCount != 0 && blackCount != 0){
+        while(redCount != 0 && blackCount != 0) {
             
             display();
             System.out.print("\n" + Character.toUpperCase(turn) + " - Piece: ");
@@ -77,10 +68,6 @@ public class CheckersGame {
             // 64 times in total (the same # as the # of squares on the board)
             for (int counter = 0; counter < 8; counter++)
             {
-                //example run 
-                //System.out.print(CB[0][1]);
-                //System.out.print(CB[o][2]);
-                
                 System.out.print(CB[i][counter]);
             }
             System.out.println();
@@ -99,17 +86,14 @@ public class CheckersGame {
       
        legal = false;
        leftRight = false;
-       
        xChange = (toSpace[0])- (piece[0]);
        yChange = (toSpace[1])-(piece[1]);
+       
          if (CB[piece[0]][piece[1]].equals("[r]") && turn == 'r')
         {
-            
               if (CB[toSpace[0]][toSpace[1]].equals("[ ]")) {
                 legal = (xChange == -1);
                 leftRight =  (abs(yChange) == 1);
-           
-  
                 legal = (leftRight == true && legal == true);
             }
               
@@ -117,12 +101,10 @@ public class CheckersGame {
               jumpedPiece = CB[toSpace[0]-xChange/2][toSpace[1]-yChange/2];
                if (jumpedPiece.equals("[b]")|| jumpedPiece.equals("[B]"))
              {
-               
                legal = (xChange == -2);
                legal  =(abs(yChange) == 2);
                   
-                if (leftRight== true && legal == true)
-                {
+                if (leftRight== true && legal == true) {
                     legal = true;
                     pieceTaken = true;
                     blackCount--;
@@ -133,42 +115,32 @@ public class CheckersGame {
               } 
         }
          
-          if (CB[piece[0]][piece[1]].equals("[R]") && turn == 'r')
-        {
-       
-            if (CB[toSpace[0]][toSpace[1]].equals("[ ]"))
-            {
+          if (CB[piece[0]][piece[1]].equals("[R]") && turn == 'r') {
+            if (CB[toSpace[0]][toSpace[1]].equals("[ ]")) {
                 legal =  (abs(xChange) == 1);
                 leftRight = (abs(yChange) == 1);
                 legal = (leftRight == true && legal == true);
-                
             }
             
             jumpedPiece = CB[toSpace[0]-xChange/2][toSpace[1]-yChange/2];
-             if (jumpedPiece.equals("[b]") || jumpedPiece.equals("[B]"))
-             {
-               
+             if (jumpedPiece.equals("[b]") || jumpedPiece.equals("[B]")) {
                 legal = (abs(xChange) == 2);
                 leftRight= (abs(yChange) == 2);
                 
-                if (leftRight == true && legal == true)
-                {
+                if (leftRight == true && legal == true) {
                     legal = true;
                     pieceTaken = true;
                     blackCount--;
                 }
                 else
                     legal = false;
-                
               } 
          
         }
           
-          if (CB[piece[0]][piece[1]].equals("[b]") && turn == 'b')
-        {
+          if (CB[piece[0]][piece[1]].equals("[b]") && turn == 'b') {
             
-            if (CB[toSpace[0]][toSpace[1]].equals("[ ]"))
-            {
+            if (CB[toSpace[0]][toSpace[1]].equals("[ ]")) {
                 legal = (xChange == 1);
                 leftRight = (abs(yChange) == 1);
                 legal = (leftRight == true && legal == true);
@@ -176,8 +148,7 @@ public class CheckersGame {
             
              
              jumpedPiece = CB[toSpace[0]-xChange/2][toSpace[1]-yChange/2];
-             if (jumpedPiece.equals("[r]")|| jumpedPiece.equals("[R]"))
-             {
+             if (jumpedPiece.equals("[r]")|| jumpedPiece.equals("[R]")) {
                 legal =  (xChange == 2);
                 leftRight = (abs(yChange) == 2);
                  
@@ -194,13 +165,9 @@ public class CheckersGame {
         }
         
         
-        
-        
-        if (CB[piece[0]][piece[1]].equals("[B]") && turn == 'b')
-        {
+        if (CB[piece[0]][piece[1]].equals("[B]") && turn == 'b') {
             
-            if (CB[toSpace[0]][toSpace[1]].equals("[ ]"))
-            {
+            if (CB[toSpace[0]][toSpace[1]].equals("[ ]")) {
                 legal = (abs(xChange) == 1);
                 leftRight = (abs(yChange) == 1);
                 legal =  (leftRight == true && legal == true);
@@ -208,13 +175,11 @@ public class CheckersGame {
             }
             
              jumpedPiece = CB[toSpace[0]-xChange/2][toSpace[1]-yChange/2];
-             if (jumpedPiece.equals("[r]") || jumpedPiece.equals("[R]"))
-             {
+             if (jumpedPiece.equals("[r]") || jumpedPiece.equals("[R]")) {
                 legal =  (abs(xChange) == 2);
                 leftRight =  (abs(yChange) == 2);
                  
-                if (leftRight == true && legal == true)
-                {
+                if (leftRight == true && legal == true) {
                     pieceTaken = true;
                     redCount--;
                 }
@@ -249,8 +214,7 @@ public class CheckersGame {
          
          if (CB[piece[0]][piece[1]].equals("[R]") && legal == true&& turn == 'r')
          {
-             if (pieceTaken == true)
-             {
+             if (pieceTaken == true)  {
                  pieceTaken = false;
                 
                  CB[toSpace[0]-(toSpace[0]-piece[0])/2][toSpace[1]-(toSpace[1]-piece[1])/2] = "[ ]";
@@ -267,8 +231,7 @@ public class CheckersGame {
          
           if (CB[piece[0]][piece[1]].equals("[b]") && legal == true&& turn == 'b')
          {
-             if (pieceTaken == true)
-             {
+             if (pieceTaken == true) {
                  pieceTaken = false;
                  CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[ ]";
              }
@@ -286,8 +249,7 @@ public class CheckersGame {
           
           if (CB[piece[0]][piece[1]].equals("[B]") && legal == true&& turn == 'b')
          {
-             if (pieceTaken == true)
-             {
+             if (pieceTaken == true) {
                  pieceTaken = false;
                  
                  CB[toSpace[0]-(toSpace[0]-piece[0])/2][toSpace[1]-(toSpace[1]-piece[1])/2] = "[ ]";
@@ -305,7 +267,6 @@ public class CheckersGame {
           public static void msgBox(String dialogue)
      {
          JOptionPane.showMessageDialog(null,dialogue,"MessageBox", JOptionPane.INFORMATION_MESSAGE);
-         
      }
     
 }
