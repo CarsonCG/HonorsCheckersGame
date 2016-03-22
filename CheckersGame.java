@@ -164,14 +164,10 @@ public class CheckersGame {
             if (CB[piece[0]][piece[1]].equals("[r]") && legal == true&& turn == 'r') {
                  if (pieceTaken == true) {
                  pieceTaken = false;
-                 //Overwrite the piece taken
-                 //CB[space[0]][space[1]-1-yChange/2] = "[ ]";
                  CB[toSpace[0]+1][toSpace[1]-(toSpace[1] - piece[1])/2] ="[ ]";
              }
-                //Overwrite the spot you were at
                  CB[piece[0]][piece[1]] = "[ ]";
-              
-                //Check to see if the piece was kinged
+       
                 if (toSpace[0] != 0)
                     CB[toSpace[0]][toSpace[1]] = "[r]";
                  else
@@ -222,5 +218,4 @@ public class CheckersGame {
          JOptionPane.showMessageDialog(null,dialogue,"MessageBox", JOptionPane.INFORMATION_MESSAGE);
          
      }
-    
 }
