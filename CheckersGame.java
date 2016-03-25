@@ -1,4 +1,3 @@
-
 package checkersgame;
 import java.util.*;
 import static java.lang.Math.*;
@@ -9,11 +8,11 @@ public class CheckersGame {
        private static String CB[][]  = {
          {"[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]"},
          {"[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]"},
-         {"[ ]", "[b]", "[ ]", "[B]", "[ ]", "[b]", "[ ]", "[b]"},
+         {"[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]"},
          {"[ ]", "[ ]", "[r]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"},
          {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"},
          {"[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]"},
-         {"[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]"},
+         {"[ ]", "[r]", "[ ]", "[ ]", "[ ]", "[r]", "[ ]", "[r]"},
          {"[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]"},
          };
        private static int[] piece = new int[2];
@@ -159,7 +158,7 @@ public class CheckersGame {
         return legal;
      }
      private static void tryMove(boolean legal)
-     {
+     {//Check for double jump method
         if(legal) {
             if (CB[piece[0]][piece[1]].equals("[r]") && legal == true&& turn == 'r') {
                  if (pieceTaken == true) {
@@ -185,11 +184,13 @@ public class CheckersGame {
             
               CB[piece[0]][piece[1]] = "[ ]";
               CB[toSpace[0]][toSpace[1]] = "[R]"; 
-         }
+         }//Fix red piece taken and make code look identical
           if (CB[piece[0]][piece[1]].equals("[b]") && legal == true&& turn == 'b') {
              if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[ ]";
+                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[ ]"; 
+                 //Insert Double Jump check method return boolean
+                 
              }
              else turn = 'r';
        
