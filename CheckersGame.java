@@ -1,4 +1,3 @@
-
 package checkersgame;
 import java.util.*;
 import static java.lang.Math.*;
@@ -6,22 +5,23 @@ import javax.swing.JOptionPane;
 
 public class CheckersGame {
 
-       private static String CB[][]  = {
+       private static final String DCB[][]  = {
          {"[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]"},
          {"[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]"},
-         {"[ ]", "[b]", "[ ]", "[B]", "[ ]", "[b]", "[ ]", "[b]"},
-         {"[ ]", "[ ]", "[r]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"},
+         {"[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]"},
+         {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"},
          {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"},
          {"[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]"},
          {"[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]"},
          {"[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]"},
          };
+       private static String[][] CB = new String[8][8];
        private static int[] piece = new int[2];
        private static int[] toSpace = new int[2];
        private static boolean pieceTaken;
        private static int redCount = 12;
        private static int blackCount = 12;
-       private static char turn = 'b';
+       private static char turn = 'r';
        
     public static void main(String[] args) {
         String userInput;
@@ -29,6 +29,7 @@ public class CheckersGame {
         Scanner stdin = new Scanner(System. in);
         pieceTaken = false;
         
+        intCB();
         while(redCount != 0 && blackCount != 0){
             display();
             System.out.print("\n" + Character.toUpperCase(turn) + " - Piece: ");
@@ -44,6 +45,11 @@ public class CheckersGame {
         }
     }
    
+    private static void intCB()
+    {
+        for (int i = 0; i < 8; i++) 
+            System.arraycopy(DCB[i], 0, CB[i], 0, 8);
+    }
     private static int[] coord(String input)
     {
         int point[] = new int[2];
@@ -72,10 +78,8 @@ public class CheckersGame {
      
      private static boolean isLegal()
      {
-       int xChange;
-       int yChange;
-       boolean leftRight;
-       boolean legal;
+       int xChange, yChange;
+       boolean leftRight, legal;
        String jumpedPiece;
       
        legal = false;
@@ -165,14 +169,13 @@ public class CheckersGame {
                  if (pieceTaken == true) {
                  pieceTaken = false;
                  CB[toSpace[0]+1][toSpace[1]-(toSpace[1] - piece[1])/2] ="[ ]";
-             }
+             } else turn = 'b';
                  CB[piece[0]][piece[1]] = "[ ]";
        
                 if (toSpace[0] != 0)
                     CB[toSpace[0]][toSpace[1]] = "[r]";
                  else
                     CB[toSpace[0]][toSpace[1]] = "[R]";
-                turn = 'b';
          }
          
          if (CB[piece[0]][piece[1]].equals("[R]") && legal == true&& turn == 'r')
@@ -186,7 +189,7 @@ public class CheckersGame {
               CB[piece[0]][piece[1]] = "[ ]";
               CB[toSpace[0]][toSpace[1]] = "[R]"; 
          }
-          if (CB[piece[0]][piece[1]].equals("[b]") && legal == true&& turn == 'b') {
+         if (CB[piece[0]][piece[1]].equals("[b]") && legal == true&& turn == 'b') {
              if (pieceTaken == true) {
                  pieceTaken = false;
                  CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[ ]";
@@ -216,6 +219,6 @@ public class CheckersGame {
           public static void msgBox(String dialogue)
      {
          JOptionPane.showMessageDialog(null,dialogue,"MessageBox", JOptionPane.INFORMATION_MESSAGE);
-         
      }
 }
+
