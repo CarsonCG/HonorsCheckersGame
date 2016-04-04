@@ -25,6 +25,8 @@ public class CheckersGame {
        private static int redCount = 12;
        private static int blackCount = 12;
        private static char turn = 'r';
+       private static int xChange;
+       private static int yChange;
        
     public static void main(String[] args) throws IOException{
         String userInput;
@@ -81,8 +83,6 @@ public class CheckersGame {
      
      private static boolean isLegal()
      {
-       int xChange;
-       int yChange;
        boolean leftRight;
        boolean legal;
        String jumpedPiece;
@@ -187,7 +187,7 @@ public class CheckersGame {
          {
              if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[_]";
+                 CB[(toSpace[0])-(xChange)][(toSpace[1])-(yChange)] = "[_]";
              }
              else turn = 'b';
             
@@ -197,7 +197,7 @@ public class CheckersGame {
          if (CB[piece[0]][piece[1]].equals("[b]") && legal == true&& turn == 'b') {
              if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[_]";
+                 CB[(toSpace[0])-(xChange)][(toSpace[1])-(yChange)] = "[_]";
              }
              else turn = 'r';
        
@@ -211,7 +211,7 @@ public class CheckersGame {
           if (CB[piece[0]][piece[1]].equals("[B]") && legal == true&& turn == 'b') {
              if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[toSpace[0]-(toSpace[0]-piece[0])/2][toSpace[1]-(toSpace[1]-piece[1])/2] = "[_]";
+                 CB[toSpace[0]-(xChange)][toSpace[1]-(yChange)] = "[_]";
              }
              else turn = 'r';
             
