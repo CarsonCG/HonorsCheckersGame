@@ -81,7 +81,6 @@ public class CheckersGame {
         }
      }
      
-     
      private static boolean isLegal()
      {
        boolean leftRight;
