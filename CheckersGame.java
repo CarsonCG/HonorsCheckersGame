@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 import java.util.*;
 import static java.lang.Math.*;
+import javax.swing.JOptionPane;
 
 public class CheckersGame {
 
@@ -222,10 +223,9 @@ public class CheckersGame {
      
      private static void loadSave() throws IOException
      {
-       PrintStream P; 
        File Save;
-       
        Save = new File("Save.txt");
+       
        Scanner stdin  = new Scanner(System.in);
        Scanner fileIn;
                
@@ -238,12 +238,7 @@ public class CheckersGame {
            }
        } else {
            intCB();
-           P = new PrintStream(Save);
-           for (int i = 0; i < 8; i++) {
-               for (int count = 0; count < 8; count++) 
-                    P.print(DCB[i][count] + " ");
-               P.println();
-             }
+           msgBox("File Does Not Exist!");
        }
      }
 
@@ -261,5 +256,8 @@ public class CheckersGame {
              }
      }
           
+     public static void msgBox(String dialogue)
+      {
+         JOptionPane.showMessageDialog(null,dialogue,"MessageBox", JOptionPane.INFORMATION_MESSAGE);        
+      }
 }
-
