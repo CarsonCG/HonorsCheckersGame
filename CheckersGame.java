@@ -1,19 +1,21 @@
 package checkersgame;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintStream;
 import java.util.*;
 import static java.lang.Math.*;
-import javax.swing.JOptionPane;
 
 public class CheckersGame {
 
        private static final String DCB[][]  = {
-         {"[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]"},
-         {"[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]"},
-         {"[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]", "[ ]", "[b]"},
-         {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"},
-         {"[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]", "[ ]"},
-         {"[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]"},
-         {"[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]"},
-         {"[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]", "[r]", "[ ]"},
+         {"[_]", "[b]", "[_]", "[b]", "[_]", "[b]", "[_]", "[b]"},
+         {"[b]", "[_]", "[b]", "[_]", "[b]", "[_]", "[b]", "[_]"},
+         {"[_]", "[b]", "[_]", "[b]", "[_]", "[b]", "[_]", "[b]"},
+         {"[_]", "[_]", "[_]", "[_]", "[_]", "[_]", "[_]", "[_]"},
+         {"[_]", "[_]", "[_]", "[_]", "[_]", "[_]", "[_]", "[_]"},
+         {"[r]", "[_]", "[r]", "[_]", "[r]", "[_]", "[r]", "[_]"},
+         {"[-]", "[r]", "[_]", "[r]", "[_]", "[r]", "[_]", "[r]"},
+         {"[r]", "[_]", "[r]", "[_]", "[r]", "[_]", "[r]", "[_]"},
          };
        private static String[][] CB = new String[8][8];
        private static int[] piece = new int[2];
@@ -23,7 +25,7 @@ public class CheckersGame {
        private static int blackCount = 12;
        private static char turn = 'r';
        
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException{
         String userInput;
         boolean legal;
         Scanner stdin = new Scanner(System. in);
@@ -78,8 +80,10 @@ public class CheckersGame {
      
      private static boolean isLegal()
      {
-       int xChange, yChange;
-       boolean leftRight, legal;
+       int xChange;
+       int yChange;
+       boolean leftRight;
+       boolean legal;
        String jumpedPiece;
       
        legal = false;
@@ -88,7 +92,7 @@ public class CheckersGame {
        
          if (CB[piece[0]][piece[1]].equals("[r]") && turn == 'r') {
             
-              if (CB[toSpace[0]][toSpace[1]].equals("[ ]") && xChange == -1) {
+              if (CB[toSpace[0]][toSpace[1]].equals("[_]") && xChange == -1) {
                 legal = (xChange == -1);
                 leftRight =  (abs(yChange) == 1);
                 legal = (leftRight == true && legal == true);
@@ -107,7 +111,7 @@ public class CheckersGame {
         }
         
           if (CB[piece[0]][piece[1]].equals("[R]") && turn == 'r') {
-           if (CB[toSpace[0]][toSpace[1]].equals("[ ]")) {
+           if (CB[toSpace[0]][toSpace[1]].equals("[_]")) {
                 legal = (abs(xChange) == 1);
                 leftRight = (abs(yChange) == 1);
                 legal = (leftRight == true && legal == true);
@@ -125,7 +129,7 @@ public class CheckersGame {
         }
           
           if (CB[piece[0]][piece[1]].equals("[b]") && turn == 'b')  {
-            if (CB[toSpace[0]][toSpace[1]].equals("[ ]")) {
+            if (CB[toSpace[0]][toSpace[1]].equals("[_]")) {
                 legal = (xChange == 1);
                 leftRight = (abs(yChange) == 1);
                 legal = (leftRight == true && legal == true);
@@ -144,7 +148,7 @@ public class CheckersGame {
         
         if (CB[piece[0]][piece[1]].equals("[B]") && turn == 'b')
         {
-            if (CB[toSpace[0]][toSpace[1]].equals("[ ]")) {
+            if (CB[toSpace[0]][toSpace[1]].equals("[_]")) {
                 legal = (abs(xChange) == 1);
                 leftRight = (abs(yChange) == 1);
                 legal =  (leftRight == true && legal == true);  
@@ -168,9 +172,9 @@ public class CheckersGame {
             if (CB[piece[0]][piece[1]].equals("[r]") && legal == true&& turn == 'r') {
                  if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[toSpace[0]+1][toSpace[1]-(toSpace[1] - piece[1])/2] ="[ ]";
+                 CB[toSpace[0]+1][toSpace[1]-(toSpace[1] - piece[1])/2] ="[_]";
              } else turn = 'b';
-                 CB[piece[0]][piece[1]] = "[ ]";
+                 CB[piece[0]][piece[1]] = "[_]";
        
                 if (toSpace[0] != 0)
                     CB[toSpace[0]][toSpace[1]] = "[r]";
@@ -182,21 +186,21 @@ public class CheckersGame {
          {
              if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[ ]";
+                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[_]";
              }
              else turn = 'b';
             
-              CB[piece[0]][piece[1]] = "[ ]";
+              CB[piece[0]][piece[1]] = "[_]";
               CB[toSpace[0]][toSpace[1]] = "[R]"; 
          }
          if (CB[piece[0]][piece[1]].equals("[b]") && legal == true&& turn == 'b') {
              if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[ ]";
+                 CB[(toSpace[0])-(toSpace[0]-piece[0])/2][(toSpace[1])-(toSpace[1]-piece[1])/2] = "[_]";
              }
              else turn = 'r';
        
-              CB[piece[0]][piece[1]] = "[ ]";
+              CB[piece[0]][piece[1]] = "[_]";
               if (toSpace[0] != 7)
                 CB[toSpace[0]][toSpace[1]] = "[b]";
               else
@@ -206,19 +210,56 @@ public class CheckersGame {
           if (CB[piece[0]][piece[1]].equals("[B]") && legal == true&& turn == 'b') {
              if (pieceTaken == true) {
                  pieceTaken = false;
-                 CB[toSpace[0]-(toSpace[0]-piece[0])/2][toSpace[1]-(toSpace[1]-piece[1])/2] = "[ ]";
+                 CB[toSpace[0]-(toSpace[0]-piece[0])/2][toSpace[1]-(toSpace[1]-piece[1])/2] = "[_]";
              }
              else turn = 'r';
             
-              CB[piece[0]][piece[1]] = "[ ]";
+              CB[piece[0]][piece[1]] = "[_]";
               CB[toSpace[0]][toSpace[1]] = "[B]";
          }
         }
      }
      
-          public static void msgBox(String dialogue)
+     private static void loadSave() throws IOException
      {
-         JOptionPane.showMessageDialog(null,dialogue,"MessageBox", JOptionPane.INFORMATION_MESSAGE);
+       PrintStream P; 
+       File Save;
+       
+       Save = new File("Save.txt");
+       Scanner stdin  = new Scanner(System.in);
+       Scanner fileIn;
+               
+       System.out.println(" "+ Save.exists());
+       if(Save.exists()) {
+           fileIn = new Scanner(Save);
+           for (int i = 0; i < 8; i++) {
+               for (int count = 0; count < 8; count++) 
+                    CB[i][count] = fileIn.next();
+           }
+       } else {
+           intCB();
+           P = new PrintStream(Save);
+           for (int i = 0; i < 8; i++) {
+               for (int count = 0; count < 8; count++) 
+                    P.print(DCB[i][count] + " ");
+               P.println();
+             }
+       }
      }
+
+     private static void saveGame() throws IOException{
+       PrintStream P; 
+       File Save;
+       
+       Save = new File("Save.txt");
+       P = new PrintStream(Save);
+       for (int i = 0; i < 8; i++) {
+               for (int count = 0; count < 8; count++) {
+                    P.print(CB[i][count] + " ");
+               }
+               P.println();
+             }
+     }
+          
 }
 
