@@ -18,6 +18,7 @@ public class CheckersGame {
          {"[-]", "[r]", "[_]", "[r]", "[_]", "[r]", "[_]", "[r]"},
          {"[r]", "[_]", "[r]", "[_]", "[r]", "[_]", "[r]", "[_]"},
          };
+         
        private static String[][] CB = new String[8][8];
        private static int[] piece = new int[2];
        private static int[] toSpace = new int[2];
