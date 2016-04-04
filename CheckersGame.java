@@ -107,8 +107,7 @@ public class CheckersGame {
                         legal = true;
                         pieceTaken = true;
                         blackCount--;
-                    }
-                else legal = false;  
+                    }  else legal = false;  
               } 
         }
         
@@ -125,8 +124,7 @@ public class CheckersGame {
                 if (leftRight == true && legal == true) {
                     pieceTaken = true;
                     redCount--;
-                }
-                else legal = false;
+                } else legal = false;
               } 
         }
           
@@ -143,8 +141,7 @@ public class CheckersGame {
                 if (leftRight == true && legal == true) {
                     pieceTaken = true;
                     redCount--;
-                }
-                else legal = false;
+                } else legal = false;
               }     
         }
         
@@ -162,8 +159,7 @@ public class CheckersGame {
                 if (leftRight == true && legal == true) {
                     pieceTaken = true;
                     redCount--;
-                }
-                else legal = false;
+                } else legal = false;
               } 
         }
         return legal;
@@ -178,10 +174,8 @@ public class CheckersGame {
              } else turn = 'b';
                  CB[piece[0]][piece[1]] = "[_]";
        
-                if (toSpace[0] != 0)
-                    CB[toSpace[0]][toSpace[1]] = "[r]";
-                 else
-                    CB[toSpace[0]][toSpace[1]] = "[R]";
+                if (toSpace[0] != 0) CB[toSpace[0]][toSpace[1]] = "[r]";
+                 else CB[toSpace[0]][toSpace[1]] = "[R]";
          }
          
          if (CB[piece[0]][piece[1]].equals("[R]") && legal == true&& turn == 'r')
@@ -189,8 +183,7 @@ public class CheckersGame {
              if (pieceTaken == true) {
                  pieceTaken = false;
                  CB[(toSpace[0])-(xChange)][(toSpace[1])-(yChange)] = "[_]";
-             }
-             else turn = 'b';
+             } else turn = 'b';
             
               CB[piece[0]][piece[1]] = "[_]";
               CB[toSpace[0]][toSpace[1]] = "[R]"; 
@@ -199,22 +192,18 @@ public class CheckersGame {
              if (pieceTaken == true) {
                  pieceTaken = false;
                  CB[(toSpace[0])-(xChange)][(toSpace[1])-(yChange)] = "[_]";
-             }
-             else turn = 'r';
+             } else turn = 'r';
        
               CB[piece[0]][piece[1]] = "[_]";
-              if (toSpace[0] != 7)
-                CB[toSpace[0]][toSpace[1]] = "[b]";
-              else
-                  CB[toSpace[0]][toSpace[1]] = "[B]";  
+              if (toSpace[0] != 7) CB[toSpace[0]][toSpace[1]] = "[b]";
+              else CB[toSpace[0]][toSpace[1]] = "[B]";  
          }
           
           if (CB[piece[0]][piece[1]].equals("[B]") && legal == true&& turn == 'b') {
              if (pieceTaken == true) {
                  pieceTaken = false;
                  CB[toSpace[0]-(xChange)][toSpace[1]-(yChange)] = "[_]";
-             }
-             else turn = 'r';
+             } else turn = 'r';
             
               CB[piece[0]][piece[1]] = "[_]";
               CB[toSpace[0]][toSpace[1]] = "[B]";
