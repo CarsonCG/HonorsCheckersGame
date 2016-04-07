@@ -218,6 +218,45 @@ public class CheckersGame {
         }
      }
      
+     private static boolean doubleJump(int xChange, int[] piece) {
+    boolean legal;
+    legal = false;
+    String pToJump;
+    String kToJump;
+    String pieceToJump;   
+   
+    if(xChange<0) {
+        pToJump = "[b]";
+        kToJump = "[B]";
+    }else {
+        pToJump = "[r]";
+        kToJump = "[R]";
+    }
+    
+    if(CB[piece[0]][piece[1]].charAt(1) == 'R'){
+        pToJump = "[b]";
+        kToJump = "[B]";
+    }
+    if(CB[piece[0]][piece[1]].charAt(1) == 'B'){
+        pToJump = "[r]";
+        kToJump = "[R]";
+    }
+    
+     pieceToJump = CB[piece[0]+xChange/2][piece[1]+1];
+             
+    if(pieceToJump.equals{pToJump} || pieceToJump.equals{kToJump}){
+        if(CB[piece[0]+xChange][piece[1]+2] == "[_]")
+            legal = true;
+    }
+    pieceToJump = CB[piece[0]+xChange/2][piece[1]-1];
+    
+    if(pieceToJump.equals{pToJump} || pieceToJump.equals{kToJump}){
+        if(CB[piece[0]+xChange][piece[1]-2] == "[_]")
+            legal = true;
+    }
+    
+    return legal;
+}
     
     
 }
